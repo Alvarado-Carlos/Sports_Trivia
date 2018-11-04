@@ -7,7 +7,7 @@
 ### Key User Stories:
    1. Winning the game
 
-+   * When the game ends, the results are displayed along with a message offering another game to the users
+   * When the game ends, the results are displayed along with a message offering another game to the users
    2. Setting game Criteria
 
    * The initial Player will decide the amount of players will be playing and the difficulty of the questions

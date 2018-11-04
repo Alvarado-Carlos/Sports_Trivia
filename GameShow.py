@@ -67,3 +67,20 @@ class Game(object):
             self.com = True
         else:
             self.com = False
+
+def turn():
+
+
+
+
+
+def main():
+    print("Welcome to our trivia game")
+    print("We have a few questions before we begin")
+    numofPlayer = input("How many players will there to be?")
+    Players = []
+    for i in numofPlayer:
+        Players.append(Player())
+    turn(Players)
+
+main()

@@ -16,8 +16,8 @@ class Player(object):
         return '{s}\'s score is {d}'.format(self.name, self.points)
 
 class ComputerPlayer(object):
-    def __init__(self, difficulty)
-        self.name = 'COM'
+    def __init__(self, name, difficulty)
+        self.name = name
         self.difficulty = difficulty
         self.score = 0
 
@@ -42,7 +42,7 @@ class ComputerPlayer(object):
 
 class Questions(object):
     def __init__(self):
-        self.qestions = []
+        self.questions = []
         self.answers = []
         self.answerChoices = []
 
@@ -57,17 +57,6 @@ class Questions(object):
         return question, answer
 
 
-
-class Game(object):
-    def __init__(self, com = False,):
-        self.players = []
-
-        if com:
-            com = ComputerPlayer(com)
-            self.com = True
-        else:
-            self.com = False
-
 def turn():
 
 
@@ -77,10 +66,28 @@ def turn():
 def main():
     print("Welcome to our trivia game")
     print("We have a few questions before we begin")
-    numofPlayer = input("How many players will there to be?")
+    comp = input("How many computers do you want to play against? (int)")
+
+    if comp >= 0:
+        dif = input("How smart do you want the computers to be?")
+
+    numofPlayer = input("How many human players will there to be? (int)")
+
     Players = []
-    for i in numofPlayer:
-        Players.append(Player())
+    for i in range(numofPlayer):
+        name = input('Player ',str(i),"Name:")
+        Players.append(Player(name))
+    
+    for i in range(comp):
+        name = "comp" + str(i)
+        Players.append(ComputerPlayer(name,dif))
+
+    # Read in Questions and Answers
+    file = open('QA.txt','r')
+
+
     turn(Players)
+
+
 
 main()

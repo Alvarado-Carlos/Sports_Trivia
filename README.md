@@ -40,11 +40,11 @@ This program is a sports trivia show that consists of various questions about di
 
 
 # Planned pair programming Chart:
-'User Story            | Time to Complete | Actual Time | Group Member
+User Story/t            | Time to Complete | Actual Time | Group Member
 
-'Winning the game      | 3 hours          | TBD         | TBD
+Winning the game      | 3 hours          | TBD         | TBD
 
-'Setting Game Criteria | 2 hours          | TBD         | TBD
+Setting Game Criteria | 2 hours          | TBD         | TBD
 
 Question reader       | 5 hours          | TBD         | TBD
 

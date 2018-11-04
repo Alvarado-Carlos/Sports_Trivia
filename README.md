@@ -6,66 +6,48 @@ This program is a sports trivia show that consists of various questions about di
 
 # Key User Stories:
    1. Winning the game
-      
+
       ~ When the game ends, the results are displayed along with a message offering another game to the users
    2. Setting game Criteria
-      
+
       ~ The initial Player will decide the amount of players will be playing and the difficulty of the questions
-      
+
    3. Question Reader
-      
+
       ~ There will be a variety of questions TF and multiple choice.
-      
+
       ~ The questions will be read from a text file. A separate text file for each question difficulty
-      
+
    4. UI
-      
+
       ~ Display the current score for each player on the top
-      
+
       ~ Followed by the number of points each question is worth and the question
-      
+
    5. Stealing points
-      
+
       ~ If a player makes an incorrect answer choice then the following player gets a chance to steal the points by answering the question correctly
-      
+
 # Unit tests:
   ~ testBoxInputLength is designed to ensure that large username inputs can be taken and added to Username list and password
-  
+
   ~ MultipleUsers is designed to ensure that multiple users to play
-  
+
   ~ scoreOutput is designed to ensure that a score is popped up when the game has ended
-  
+
   ~ questionFile is designed to check if a file can be uploaded, and read the appropriate questions
 
 
 
 # Planned pair programming Chart:
-User Story
-Time to Complete(estimate)
-Actual Time
-Group Member
-Winning the game
-3 hours
+User Story | Time to Complete(estimate) | Actual Time | Group Member
 
+Winning the game | 3 hours | TBD
 
-TBD
-Setting Game Criteria
-2 hours
+Setting Game Criteria | 2 hours | TBD
 
+Question reader | 5 hours | TBD
 
-TBD
-Question reader
-5 hours
+UI | 2 hours | TBD
 
-
-TBD
-UI
-2 hours
-
-
-TBD
-Stealing points
-3 hours
-
-
-TBD
+Stealing points | 3 hours | TBD

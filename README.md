@@ -2,7 +2,7 @@
 
 # Project Description:
 
-This program is a sports trivia show that consists of various questions about different sports. The startup menu will allow the users to select the number of players playing, and the sports category. Each question in the game will be worth a certain amount of points depending on the difficulty of the question, and the winner of the game will be the person who accumulated the most points after a certain number of questions. Throughout the game, the players will be notified of their scores and their opponents scores to keep track. This game will be developed using paired programing and will be split into the user stories below:
+⋅⋅⋅This program is a sports trivia show that consists of various questions about different sports. The startup menu will allow the users to select the number of players playing, and the sports category. Each question in the game will be worth a certain amount of points depending on the difficulty of the question, and the winner of the game will be the person who accumulated the most points after a certain number of questions. Throughout the game, the players will be notified of their scores and their opponents scores to keep track. This game will be developed using paired programing and will be split into the user stories below:
 
 # Key User Stories:
    1. Winning the game
@@ -29,13 +29,13 @@ This program is a sports trivia show that consists of various questions about di
       ~ If a player makes an incorrect answer choice then the following player gets a chance to steal the points by answering the question correctly
 
 # Unit tests:
-  ~ testBoxInputLength is designed to ensure that large username inputs can be taken and added to Username list and password
+  ~ *testBoxInputLength* is designed to ensure that large username inputs can be taken and added to Username list and password
 
-  ~ MultipleUsers is designed to ensure that multiple users to play
+  ~ *MultipleUsers* is designed to ensure that multiple users to play
 
-  ~ scoreOutput is designed to ensure that a score is popped up when the game has ended
+  ~ *scoreOutput* is designed to ensure that a score is popped up when the game has ended
 
-  ~ questionFile is designed to check if a file can be uploaded, and read the appropriate questions
+  ~ *questionFile* is designed to check if a file can be uploaded, and read the appropriate questions
 
 
 

@@ -7,35 +7,35 @@
 # Key User Stories:
    1. Winning the game
 
-      ~ When the game ends, the results are displayed along with a message offering another game to the users
+     * When the game ends, the results are displayed along with a message offering another game to the users
    2. Setting game Criteria
 
-      ~ The initial Player will decide the amount of players will be playing and the difficulty of the questions
+     * The initial Player will decide the amount of players will be playing and the difficulty of the questions
 
    3. Question Reader
 
-      ~ There will be a variety of questions TF and multiple choice.
+     * There will be a variety of questions TF and multiple choice.
 
-      ~ The questions will be read from a text file. A separate text file for each question difficulty
+     * The questions will be read from a text file. A separate text file for each question difficulty
 
    4. UI
 
-      ~ Display the current score for each player on the top
+     * Display the current score for each player on the top
 
-      ~ Followed by the number of points each question is worth and the question
+     * Followed by the number of points each question is worth and the question
 
    5. Stealing points
 
-      ~ If a player makes an incorrect answer choice then the following player gets a chance to steal the points by answering the question correctly
+     * If a player makes an incorrect answer choice then the following player gets a chance to steal the points by answering the question correctly
 
 # Unit tests:
-  ~ *testBoxInputLength* is designed to ensure that large username inputs can be taken and added to Username list and password
+  * *testBoxInputLength* is designed to ensure that large username inputs can be taken and added to Username list and password
 
-  ~ *MultipleUsers* is designed to ensure that multiple users to play
+  * *MultipleUsers* is designed to ensure that multiple users to play
 
-  ~ *scoreOutput* is designed to ensure that a score is popped up when the game has ended
+  * *scoreOutput* is designed to ensure that a score is popped up when the game has ended
 
-  ~ *questionFile* is designed to check if a file can be uploaded, and read the appropriate questions
+  * *questionFile* is designed to check if a file can be uploaded, and read the appropriate questions
 
 
 

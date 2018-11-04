@@ -46,7 +46,7 @@ User Story            | Time to Complete | Actual Time | Group Member
 Winning the game      | 3 hours          | TBD         | TBD
                       |                  |             | 
 Setting Game Criteria | 2 hours          | TBD         | TBD
---------------------- | ---------------- | ----------- | -------------
+----------------------------------------------------------------------
 Question reader       | 5 hours          | TBD         | TBD
 --------------------- | ---------------- | ----------- | -------------
 UI                    | 2 hours          | TBD         | TBD

@@ -16,7 +16,7 @@ class Player(object):
         return '{s}\'s score is {d}'.format(self.name, self.points)
 
 class ComputerPlayer(object):
-    def __init__(self, name, difficulty)
+    def __init__(self, name, difficulty):
         self.name = name
         self.difficulty = difficulty
         self.score = 0
@@ -46,71 +46,136 @@ class Questions(object):
         self.answers = []
         self.answerChoices = []
 
-    def numofQuestions():
-        return(size(self.questions))
+    def numofQuestions(self):
+        return(len(self.questions))
 
     def askQuestion(self):
-        idx = random.randint(0,len(questions))
-        question = questions[idx]
-        answer = answers[idx]
-        choices = answerChoices[idx]
-        del question[idx]
-        del answer[idx]
-        del answerChoices[idx]
-        return question, answer , choices
+        idx = random.randint(0,len(self.questions)-1)
+        question = self.questions[idx]
+        answer = self.answers[idx]
+        choices = self.answerChoices[idx]
+    
+        return question, answer , choices, idx
+
+    def delQuestion(self, question, answer, choices,idx):
+        del self.questions[idx]
+        del self.answers[idx]
+        del self.answerChoices[idx]
 
 
 def scoreboard(players):
     print("The Scoreboard:")
     for player in players:
-        print(player.name() +"---->" +str(player.getScore()))
+        print(player.name +"---->" +str(player.getScore()))
 
-def turn(players):
-    for player in players:
-        while Questions().numofQuestions() > 0:
-            question, Correctanswer, answerChoices = Questions().askQuestion()
+def turn(players,questions):
+    while questions.numofQuestions() > 0:    
+        for player in players:
+        
+            question, Correctanswer, answerChoices, idx = questions.askQuestion()
+            print(player.name + "'s Turn:")
             print(question)
-            for i in range(0, answerChoices.size()):
+            for i in range(0, len(answerChoices)):
                 print(answerChoices[i])
             playerAnswer = input("What is your answer?")
             playerAnswer =  playerAnswer.upper()
-            if answer = "SCOREBOARD":
+
+            if playerAnswer == "SCOREBOARD":
                 scoreboard(players)
-            elif answer = Correctanswer:
+                print(question)
+                for i in range(0, len(answerChoices)):
+                    print(answerChoices[i])
+                playerAnswer = input("What is your answer?")
+                playerAnswer =  playerAnswer.upper()
+
+            if playerAnswer == Correctanswer:
                 print("You are correct")
                 player.updateScore(1)
+                questions.delQuestion(question,Correctanswer,answerChoices,idx)
             else:
                 print("You are incorrect")
-
-
-
+                questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
 
 def main():
-    print("Welcome to our trivia game")
-    print("We have a few questions before we begin")
-    comp = input("How many computers do you want to play against? (int)")
+    print("Welcome to our trivia game \n")
+    print("We have a few questions before we begin \n")
+    comp = input("How many computers do you want to play against? (int)\n")
 
-    if comp >= 0:
-        dif = input("How smart do you want the computers to be?")
+    if int(comp) > 0:
+        dif = input("How smart do you want the computers to be? \n")
 
-    numofPlayer = input("How many human players will there to be? (int)")
+    numofPlayer = input("How many human players will there to be? (int) \n")
 
     Players = []
-    for i in range(numofPlayer):
-        name = input('Player ',str(i),"Name:")
+    for i in range(int(numofPlayer)):
+        name = input('Player ' + str(i) + " Name: ")
         Players.append(Player(name))
     
-    for i in range(comp):
+    for i in range(int(comp)):
         name = "comp" + str(i)
         Players.append(ComputerPlayer(name,dif))
 
     # Read in Questions and Answers
-    file = open('QA.txt','r')
+    lines = [line.rstrip('\n') for line in open('QA.txt')]
+    lines = [line.lstrip('\t') for line in lines]
+
+    for line in lines:
+        if len(line) == 0:
+            lines.remove(line)
+    lines.remove(lines[-1])
+
+    QA = Questions()
+    
+    for line in lines:
+
+        # Multipe Choice
+        if line[0] == '!':
+            index = line.find('"')
+            QA.questions.append(line[index + 1: -1])
+            mc = []
+            ans = ''
+
+            index = lines.index(line)
+            i=1
+            while i <= 4:
+                mc.append(lines[index + i])
+                i+=1
+
+            ans = lines[index + 5]
+            ans = ans[1:]
+
+            QA.answers.append(ans)
+            QA.answerChoices.append(mc)
 
 
-    turn(Players)
+        # True False
+        if line[0] == '$':
+            index = line.find('"')
+            QA.questions.append(line[index + 1: -1])
+            
+            TF = []
+            ans = ''
 
+            index = lines.index(line)
 
+            i=1
+            while i <= 2:
+                TF.append(lines[index + i])
+                i+=1
+
+            ans = lines[index + 3]
+            ans = ans[1:]
+
+            QA.answers.append(ans)
+            QA.answerChoices.append(TF)
+
+    #print(QA.questions)
+
+    #print(QA.answerChoices)
+
+    #print(QA.answers)
+
+    turn(Players, QA)
 
 main()

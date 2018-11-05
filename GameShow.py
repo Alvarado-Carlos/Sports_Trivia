@@ -46,6 +46,9 @@ class Questions(object):
         self.answers = []
         self.answerChoices = []
 
+    def numofQuestions():
+        return(size(self.questions))
+
     def askQuestion(self):
         idx = random.randint(0,len(questions))
         question = questions[idx]
@@ -54,10 +57,30 @@ class Questions(object):
         del question[idx]
         del answer[idx]
         del answerChoices[idx]
-        return question, answer
+        return question, answer , choices
 
 
-def turn():
+def scoreboard(players):
+    print("The Scoreboard:")
+    for player in players:
+        print(player.name() +"---->" +str(player.getScore()))
+
+def turn(players):
+    for player in players:
+        while Questions().numofQuestions() > 0:
+            question, Correctanswer, answerChoices = Questions().askQuestion()
+            print(question)
+            for i in range(0, answerChoices.size()):
+                print(answerChoices[i])
+            playerAnswer = input("What is your answer?")
+            playerAnswer =  playerAnswer.upper()
+            if answer = "SCOREBOARD":
+                scoreboard(players)
+            elif answer = Correctanswer:
+                print("You are correct")
+                player.updateScore(1)
+            else:
+                print("You are incorrect")
 
 
 

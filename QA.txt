@@ -1,4 +1,4 @@
-$ 1. "Do NFL refs receive Super Bowl rings?" 
+$ 1. "Do NFL refs receive Super Bowl rings?"
 	A. True 
 	B. False
 	
@@ -36,11 +36,11 @@ $ 1. "Do NFL refs receive Super Bowl rings?"
 
 	~C
 
-! 6. "Do the Golden State Warriors have a mascot?"
-	A. Yes
-	B. No
+$ 6. "The Golden State Warriors don't have a mascot"
+	A. True
+	B. False
 
-	~B
+	~A
 
 ! 7. "Who was the first NFL player to rush for 2000 yards in one season?"
 	A. Ricky Williams

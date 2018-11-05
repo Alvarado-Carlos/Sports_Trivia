@@ -50,6 +50,7 @@ class Questions(object):
         return(len(self.questions))
 
     def askQuestion(self):
+        
         idx = random.randint(0,len(self.questions)-1)
         question = self.questions[idx]
         answer = self.answers[idx]
@@ -73,43 +74,58 @@ def turn(players,questions):
         for player in players:
         
             question, Correctanswer, answerChoices, idx = questions.askQuestion()
-            print(player.name + "'s Turn:")
-            print(question)
+            print(player.name + "'s Turn: \n")
+            print(question + "\n")
             for i in range(0, len(answerChoices)):
                 print(answerChoices[i])
-            playerAnswer = input("What is your answer?")
+            playerAnswer = input("\nWhat is your answer? \n")
             playerAnswer =  playerAnswer.upper()
 
             if playerAnswer == "SCOREBOARD":
+                print('\n')
                 scoreboard(players)
-                print(question)
+                print('\n')
+                print(question + '\n')
                 for i in range(0, len(answerChoices)):
                     print(answerChoices[i])
-                playerAnswer = input("What is your answer?")
+                playerAnswer = input("\nWhat is your answer? \n")
                 playerAnswer =  playerAnswer.upper()
 
             if playerAnswer == Correctanswer:
-                print("You are correct")
+                print("\nYou are correct \n")
                 player.updateScore(1)
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
             else:
-                print("You are incorrect")
+                print("\nYou are incorrect \n")
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
+
+    scoreboard(players)
+    print('\n')
+
+    winner = ''
+    maxScore = 0
+
+    for player in players:
+        if player.getScore() > maxScore:
+            maxScore = player.getScore()
+            winner = player.name
+
+    print(winner + " Wins!!!")
 
 
 def main():
-    print("Welcome to our trivia game \n")
-    print("We have a few questions before we begin \n")
+    print("\nWelcome to our trivia game! \n")
+    print("We have a few questions before we begin: \n")
     comp = input("How many computers do you want to play against? (int)\n")
 
     if int(comp) > 0:
-        dif = input("How smart do you want the computers to be? \n")
+        dif = input("\nHow smart do you want the computers to be? \n")
 
-    numofPlayer = input("How many human players will there to be? (int) \n")
+    numofPlayer = input("\nHow many human players will there to be? (int) \n")
 
     Players = []
     for i in range(int(numofPlayer)):
-        name = input('Player ' + str(i) + " Name: ")
+        name = input('\nPlayer ' + str(i+1) + " Name: ")
         Players.append(Player(name))
     
     for i in range(int(comp)):
@@ -175,7 +191,8 @@ def main():
     #print(QA.answerChoices)
 
     #print(QA.answers)
-
+    input("\nPress Enter to continue to game")
+    print("\nBegin Game!!\n")
     turn(Players, QA)
 
 main()

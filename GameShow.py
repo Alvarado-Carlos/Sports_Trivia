@@ -69,7 +69,7 @@ def scoreboard(players):
     for player in players:
         print(player.name +"---->" +str(player.getScore()))
 
-def turn(players,questions):
+def turn(players,coms,questions):
     while questions.numofQuestions() > 0:    
         for player in players:
         
@@ -98,7 +98,7 @@ def turn(players,questions):
             else:
                 print("\nYou are incorrect \n")
                 #let all the other players guess the incorrect question to steal points
-
+                
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
         #com will simulation
@@ -109,7 +109,7 @@ def turn(players,questions):
             for i in range(0, len(answerChoices)):
                 print(answerChoices[i])
             #adjust response for com
-            comAnswer = com.response()
+            comAnswer = com.response(idx, question, Correctanswer, answerChoices)
             comAnswer =  comAnswer.upper()
 
             if comAnswer == Correctanswer:
@@ -156,9 +156,10 @@ def main():
         name = input('\nPlayer ' + str(i+1) + " Name: ")
         Players.append(Player(name))
     
+    Coms = []
     for i in range(int(comp)):
         name = "comp" + str(i)
-        Players.append(ComputerPlayer(name,dif))
+        Coms.append(ComputerPlayer(name,dif))
 
     # Read in Questions and Answers
     lines = [line.rstrip('\n') for line in open('QA.txt')]
@@ -221,6 +222,6 @@ def main():
     #print(QA.answers)
     input("\nPress Enter to continue to game")
     print("\nBegin Game!!\n")
-    turn(Players, QA)
+    turn(Players,Coms, QA)
 
 main()

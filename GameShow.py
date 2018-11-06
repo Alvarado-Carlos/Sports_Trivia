@@ -133,6 +133,11 @@ def turn(players,questions):
             maxScore = player.getScore()
             winner = player.name
 
+    for com in coms:
+        if com.getScore() > maxScore:
+            maxScore = com.getScore()
+            winner = com.name
+
     print(winner + " Wins!!!")
 
 

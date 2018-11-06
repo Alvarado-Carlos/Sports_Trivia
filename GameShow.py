@@ -56,7 +56,7 @@ class Questions(object):
         answer = self.answers[idx]
         choices = self.answerChoices[idx]
     
-        return question, answer , choices, idx
+        return question, answer, choices, idx
 
     def delQuestion(self, question, answer, choices,idx):
         del self.questions[idx]

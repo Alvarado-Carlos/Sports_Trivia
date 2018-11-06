@@ -2,7 +2,7 @@
 
 ### Project Description:
 
-   This program is a sports trivia show that consists of various questions about different sports. The startup menu will allow the users to select the number of players playing, and the sports category. Each question in the game will be worth a certain amount of points depending on the difficulty of the question, and the winner of the game will be the person who accumulated the most points after a certain number of questions. Throughout the game, the players will be notified of their scores and their opponents scores to keep track. This game will be developed using paired programing and will be split into the user stories below:  
+   This program is a sports trivia show that consists of various questions about different sports. The startup menu will allow the users to select the number of players playing, and the sports category. Each question in the game will be worth a certain amount of points depending on the difficulty of the question, and the winner of the game will be the person who accumulated the most points after a certain number of questions. Throughout the game, the players will be notified of their scores and their opponents scores to keep track (typing "scoreboard" at any point during the running of the game will output the current score for each player). This game will be developed using paired programing and will be split into the user stories below:  
 
 ### Key User Stories:
    1. Winning the game

@@ -97,6 +97,29 @@ def turn(players,questions):
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
             else:
                 print("\nYou are incorrect \n")
+                #let all the other players guess the incorrect question to steal points
+
+                questions.delQuestion(question,Correctanswer,answerChoices,idx)
+
+        #com will simulation
+        for com in coms:
+            question, Correctanswer, answerChoices, idx = questions.askQuestion()
+            print(com.name + "'s Turn: \n")
+            print(question + "\n")
+            for i in range(0, len(answerChoices)):
+                print(answerChoices[i])
+            #adjust response for com
+            comAnswer = com.response()
+            comAnswer =  comAnswer.upper()
+
+            if comAnswer == Correctanswer:
+                print("\nYou are correct \n")
+                com.updateScore(1)
+                questions.delQuestion(question,Correctanswer,answerChoices,idx)
+            else:
+                print("\nYou are incorrect \n")
+                # let all the other players guess the incorrect question to steal points
+
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
     scoreboard(players)

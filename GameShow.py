@@ -1,7 +1,8 @@
 # GameShow
 import random
 
-class Player(object):
+
+class Player:
     def __init__(self, name):
         self.name = name
         self.score = 0
@@ -15,7 +16,8 @@ class Player(object):
     def __str__(self):
         return '{s}\'s score is {d}'.format(self.name, self.points)
 
-class ComputerPlayer(object):
+
+class ComputerPlayer:
     def __init__(self, name, difficulty):
         self.name = name
         self.difficulty = difficulty
@@ -40,7 +42,7 @@ class ComputerPlayer(object):
             return answer
 
 
-class Questions(object):
+class Questions:
     def __init__(self):
         self.questions = []
         self.answers = []
@@ -68,6 +70,7 @@ def scoreboard(players):
     print("The Scoreboard:")
     for player in players:
         print(player.name +"---->" +str(player.getScore()))
+
 
 def turn(players,coms,questions):
     while questions.numofQuestions() > 0:    
@@ -149,7 +152,7 @@ def main():
     if int(comp) > 0:
         dif = input("\nHow smart do you want the computers to be? \n")
 
-    numofPlayer = input("\nHow many human players will there to be? (int) \n")
+    numofPlayer = input("\nHow many human players will there be? (int) \n")
 
     Players = []
     for i in range(int(numofPlayer)):
@@ -174,7 +177,7 @@ def main():
     
     for line in lines:
 
-        # Multipe Choice
+        # Multiple Choice
         if line[0] == '!':
             index = line.find('"')
             QA.questions.append(line[index + 1: -1])
@@ -223,5 +226,6 @@ def main():
     input("\nPress Enter to continue to game")
     print("\nBegin Game!!\n")
     turn(Players,Coms, QA)
+
 
 main()

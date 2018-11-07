@@ -104,6 +104,8 @@ def turn(players,coms,questions):
                 
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
+            if questions.numofQuestions()>0:
+                input('Continue to Next Question? (Enter)\n\n')
         #com will simulation
         for com in coms:
             question, Correctanswer, answerChoices, idx = questions.askQuestion()
@@ -125,6 +127,7 @@ def turn(players,coms,questions):
 
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
+    print("\n\nGAME OVER\n\n")
     scoreboard(players)
     print('\n')
 

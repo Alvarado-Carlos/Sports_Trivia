@@ -1,89 +1,106 @@
-$ 1. "Do NFL refs receive Super Bowl rings?"
-	A. True 
-	B. False
+! 1. "Where was golf's 1977 US Open held?"
+	A. Tulsa, Oklahoma
+	B. Detroit, Michigan
+	C. Atlanta, Georgia 
+	D. San Antonio, Texas
 	
 	~A
 
-! 2. "What percent gold are gold medals from the olympics?"
-	A. 15
-	B. 50
-	C. 1
-	D. 100
-
-	~C
-
-! 3. "What sport used the term Homerun long before baseball?"
-	A. Cricket
-	B. Golf
-	C. Tennis
-	D. Lacross
-
-	~A
-
-! 4. "Which country has played in every World Cup?"
-	A. Spain
-	B. Germany
-	C. Mexico
-	D. Brazil
+! 2. "Who lost the first Super Bowl of the 70s?"
+	A. Dallas Cowboys
+	B. New England Patriots
+	C. Detroit Lions
+	D. Minnesota Vikings
 
 	~D
 
-! 5. "What basketball play was banned in the 1970's?"
-	A. 3 pointer
-	B. Travel
-	C. Slam Dunk
-	D. Euro-Step
+! 3. "Which was the first team to win three Super Bowls?"
+	A. New Orleans Saints
+	B. Los Angeles Rams
+	C. Pittsburgh Steelers 
+	D. None of the above
 
 	~C
 
-$ 6. "The Golden State Warriors don't have a mascot"
-	A. True
-	B. False
-
-	~A
-
-! 7. "Who was the first NFL player to rush for 2000 yards in one season?"
-	A. Ricky Williams
-	B. O.J. Simpson
-	C. Adrian Peterson
-	D. Larry Sanders
+! 4. "Who did Martina Navratilova beat to win her ninth Wimbledon title?"
+	A. Pam Shriver
+	B. Zina Garrison
+	C. Carling Bassett
+	D. Barbara Potter
 
 	~B
 
-$ 8. "1900 was the first year women were allowed to participate in the Olympics"
-	A. True
-	B. False
+! 5. "Who captained the US Ryder Cup team in 1991?"
+	A. Wayne Levi
+	B. Dave Stockton 
+	C. Fred Couples
+	D. Hale Irwin
 
-	~A
+	~B
 
-! 9. "What position did Babe Ruth begin his career playing?"
-	A. Outfielder 
-	B. First Base
-	C. Thrid Base
-	D. Pitcher
+! 6. "What distance is the Breeders' Cup Classic?"
+	A. Two and a quarter miles 
+	B. One and a half miles
+	C. Two miles
+	D. One and a quarter miles
 
 	~D
 
-! 10. "How many championships did Michael Jordan win?"
-	A. 5
-	B. 6
-	C. 4
-	D. 7
+! 7. "Who kicked a record-breaking punt 98 yards against the Denver Broncos in 1969?"
+	A. Ron Widby
+	B. Mike Eischeid
+	C. Tom Dempsey
+	D. Steve O'Neal
 
-	~B
+	~D
 
-! 11. "What country won the first world cup?"
-	A. Uraguay
-	B. Brazil
-	C. Germany
-	D. Argentina 
+! 8. "Who's home runs record did Mark McGwire break in the 1998 season?"
+	A. Roger Maris
+	B. Jeff Bagwell
+	C. Mo Vaughn
+	D. Hank Aaron
 
 	~A
 
-! 12. "What NFL player has been in the most Super Bowls?"
-	A. Aaron Rodgers
-	B. Tom Brady
-	C. Peyton Manning
-	D. Troy Aikman
+! 9. "Who was the aerobatic world champion in 1988?"
+	A. 
+	B.
+	C. Henry Haigh
+	D. 
 
-	~B
+	~C
+
+! 10. "What was Pete Sampras seeded when he won his first US Open?"
+	A. 12
+	B. 3
+	C. 2
+	D. 9
+	
+	~A
+
+! 11. "Which head coach hols the record for most Super Bowl wins?"
+	A. Bill Belichick
+	B. Chuck Noll 
+	C. Vince Lombardi
+	D. Bill Walsh
+	
+	~B	
+
+! 12. "To the nearest 1,000 how many rides did the legendary Willie Shoemaker take?"
+	A. 39,000
+	B. 35,000
+	C. 38,000
+	D. 40,000
+
+	~D
+
+
+
+
+
+
+
+
+
+
+

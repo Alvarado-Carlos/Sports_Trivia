@@ -3,6 +3,7 @@ import random
 
 
 class Player:
+
     def __init__(self, name):
         self.name = name
         self.score = 0
@@ -82,7 +83,7 @@ def turn(players,coms,questions):
             for i in range(0, len(answerChoices)):
                 print(answerChoices[i])
             playerAnswer = input("\nWhat is your answer? \n")
-            playerAnswer =  playerAnswer.upper()
+            playerAnswer = playerAnswer.upper()
 
             if playerAnswer == "SCOREBOARD":
                 print('\n')
@@ -92,7 +93,7 @@ def turn(players,coms,questions):
                 for i in range(0, len(answerChoices)):
                     print(answerChoices[i])
                 playerAnswer = input("\nWhat is your answer? \n")
-                playerAnswer =  playerAnswer.upper()
+                playerAnswer = playerAnswer.upper()
 
             if playerAnswer == Correctanswer:
                 print("\nYou are correct \n")
@@ -132,19 +133,32 @@ def turn(players,coms,questions):
     print('\n')
 
     winner = ''
+    second = ''
+    nextBest = 0
     maxScore = 0
 
     for player in players:
-        if player.getScore() > maxScore:
+
+        if player.getScore() >= maxScore:
+            nextBest = maxScore
+            second = player.name
             maxScore = player.getScore()
+
+            second = winner
             winner = player.name
+
+    if maxScore == 0:
+        print("No winner :(")
+    elif nextBest == maxScore:
+        print("It's a tie between " + str(second) + " and", str(winner) + "!")
+    else:
+        print(winner + " Wins!!!")
 
     for com in coms:
         if com.getScore() > maxScore:
             maxScore = com.getScore()
             winner = com.name
 
-    print(winner + " Wins!!!")
 
 
 def main():
@@ -213,7 +227,7 @@ def main():
             i=1
             while i <= 2:
                 TF.append(lines[index + i])
-                i+=1
+                i += 1
 
             ans = lines[index + 3]
             ans = ans[1:]
@@ -228,7 +242,7 @@ def main():
     #print(QA.answers)
     input("\nPress Enter to continue to game")
     print("\nBegin Game!!\n")
-    turn(Players,Coms, QA)
+    turn(Players, Coms, QA)
 
 
 main()

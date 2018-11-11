@@ -44,11 +44,11 @@ $ 6. "The Golden State Warriors don't have a mascot"
 
 ! 7. "Who was the first NFL player to rush for 2000 yards in one season?"
 	A. Ricky Williams
-	B. O.J. Simpson
-	C. Adrian Peterson
+	B. Adrian Peterson
+	C. O.J. Simpson
 	D. Larry Sanders
 
-	~B
+	~C
 
 $ 8. "1900 was the first year women were allowed to participate in the Olympics"
 	A. True

@@ -171,6 +171,13 @@ def main():
 
     numofPlayer = input("\nHow many human players will there be? (int) \n")
     diffLevel = input("\nType question difficulty level (easy, medium, hard) \n")
+    diffLevel = diffLevel.lower()
+
+    while diffLevel != "easy" and diffLevel != "medium" and diffLevel!= "hard":
+        print("Please type easy, medium, or hard")
+        diffLevel = input()
+        diffLevel = diffLevel.lower()
+
 
     Players = []
     for i in range(int(numofPlayer)):

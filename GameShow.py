@@ -169,7 +169,13 @@ def main():
     if int(comp) > 0:
         dif = input("\nHow smart do you want the computers to be? \n")
 
-    numofPlayer = input("\nHow many human players will there be? (int) \n")
+    numofPlayer = input("\nHow many human players will there be? (int) (Up to 3 players) \n")
+
+
+    while numofPlayer != "1" and numofPlayer != "2" and numofPlayer != "3":
+        print("Please choose 1, 2, or 3 players")
+        numofPlayer = input()
+
     diffLevel = input("\nType question difficulty level (easy, medium, hard) \n")
     diffLevel = diffLevel.lower()
 

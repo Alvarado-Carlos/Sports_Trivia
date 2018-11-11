@@ -170,6 +170,7 @@ def main():
         dif = input("\nHow smart do you want the computers to be? \n")
 
     numofPlayer = input("\nHow many human players will there be? (int) \n")
+    diffLevel = input("\nType question difficulty level (easy, medium, hard) \n")
 
     Players = []
     for i in range(int(numofPlayer)):
@@ -182,7 +183,7 @@ def main():
         Coms.append(ComputerPlayer(name,dif))
 
     # Read in Questions and Answers
-    lines = [line.rstrip('\n') for line in open('QA.txt')]
+    lines = [line.rstrip('\n') for line in open(str(diffLevel + "QA" + ".txt"))]
     lines = [line.lstrip('\t') for line in lines]
 
     for line in lines:

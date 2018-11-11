@@ -63,10 +63,10 @@
 	~A
 
 ! 9. "Who was the aerobatic world champion in 1988?"
-	A. 
-	B.
+	A. Victor Smolin
+	B. Peter Jirmus
 	C. Henry Haigh
-	D. 
+	D. Claude Bessiere
 
 	~C
 
@@ -93,14 +93,3 @@
 	D. 40,000
 
 	~D
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,25 @@
 # GameShow
-import random
+import random, tkinter
 
+'''
+window = tkinter.Tk()
+window.geometry("600x300")
+window.title("Let's Play Sports Trivia!")
+
+label = tkinter.Label(window, text="Hello", font=("Times New Roman", 50))
+label.grid(column=1, row=2)
+
+text = tkinter.Entry(window, width=10)
+text.grid(column=1, row=4)
+
+def clicked():
+    label.configure(text="input: " + text.get())
+
+button = tkinter.Button(window, text="Click Me", bg="grey", fg="black", command=clicked)
+button.grid(column=1, row=6)
+
+window.mainloop()
+'''
 
 class Player:
 
@@ -19,24 +38,37 @@ class Player:
 
 
 class ComputerPlayer:
+
     def __init__(self, name, difficulty):
         self.name = name
         self.difficulty = difficulty
         self.score = 0
 
+    def getScore(self):
+        return (self.score)
+
+    def updateScore(self, points):
+        self.score += points
+
     def response(self, idx, question, answer, answers):
         # easy setting returns random answer
         if (self.difficulty.upper() == 'EASY'):
-            idx = random.randint(0,len(questions))
-            return answers[idx]
+            idx = random.randint(0,len(answers)-1)
+            ans = answers[idx].split(".")
+            ans = ans[0]
+            return ans
         # medium setting returns random answer if correct, or tries again and
         # returns that answer
         elif(self.difficulty.upper() == 'MEDIUM'):
-            idx = random.randint(0,len(questions))
-            if answers[idx] == answer:
+            idx = random.randint(0,len(answers)-1)
+            if answerChoices[idx] == answer:
+                ans = answers[idx].split(".")
+                ans = ans[0]
                 return answers[idx]
             else:
-                idx = random.randint(0,len(questions))
+                idx = random.randint(0,len(answers)-1)
+                ans = answers[idx].split(".")
+                ans = ans[0]
                 return answers[idx]
         # hard setting returns correct answer
         else:
@@ -53,12 +85,12 @@ class Questions:
         return(len(self.questions))
 
     def askQuestion(self):
-        
+
         idx = random.randint(0,len(self.questions)-1)
         question = self.questions[idx]
         answer = self.answers[idx]
         choices = self.answerChoices[idx]
-    
+
         return question, answer, choices, idx
 
     def delQuestion(self, question, answer, choices,idx):
@@ -67,16 +99,18 @@ class Questions:
         del self.answerChoices[idx]
 
 
-def scoreboard(players):
+def scoreboard(players, coms):
     print("The Scoreboard:")
     for player in players:
         print(player.name +"---->" +str(player.getScore()))
+    for com in coms:
+        print(com.name +"---->" +str(com.getScore()))
 
 
 def turn(players,coms,questions):
-    while questions.numofQuestions() > 0:    
+    while questions.numofQuestions() > 0:
         for player in players:
-        
+
             question, Correctanswer, answerChoices, idx = questions.askQuestion()
             print(player.name + "'s Turn: \n")
             print(question + "\n")
@@ -87,7 +121,7 @@ def turn(players,coms,questions):
 
             if playerAnswer == "SCOREBOARD":
                 print('\n')
-                scoreboard(players)
+                scoreboard(players, coms)
                 print('\n')
                 print(question + '\n')
                 for i in range(0, len(answerChoices)):
@@ -102,11 +136,12 @@ def turn(players,coms,questions):
             else:
                 print("\nYou are incorrect \n")
                 #let all the other players guess the incorrect question to steal points
-                
+
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
             if questions.numofQuestions()>0:
                 input('Continue to Next Question? (Enter)\n\n')
+
         #com will simulation
         for com in coms:
             question, Correctanswer, answerChoices, idx = questions.askQuestion()
@@ -116,6 +151,7 @@ def turn(players,coms,questions):
                 print(answerChoices[i])
             #adjust response for com
             comAnswer = com.response(idx, question, Correctanswer, answerChoices)
+            print("\n" + com.name + "'s answer: " + comAnswer)
             comAnswer =  comAnswer.upper()
 
             if comAnswer == Correctanswer:
@@ -129,7 +165,7 @@ def turn(players,coms,questions):
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
 
     print("\n\nGAME OVER\n\n")
-    scoreboard(players)
+    scoreboard(players, coms)
     print('\n')
 
     winner = ''
@@ -147,6 +183,15 @@ def turn(players,coms,questions):
             second = winner
             winner = player.name
 
+    for com in coms:
+        if com.getScore() >= maxScore:
+            nextBest = maxScore
+            second = com.name
+            maxScore = com.getScore()
+
+            second = winner
+            winner = com.name
+
     if maxScore == 0:
         print("No winner :(")
     elif nextBest == maxScore:
@@ -154,44 +199,57 @@ def turn(players,coms,questions):
     else:
         print(winner + " Wins!!!")
 
-    for com in coms:
-        if com.getScore() > maxScore:
-            maxScore = com.getScore()
-            winner = com.name
-
-
-
 def main():
     print("\nWelcome to our trivia game! \n")
     print("We have a few questions before we begin: \n")
-    comp = input("How many computers do you want to play against? (int)\n")
 
-    if int(comp) > 0:
-        dif = input("\nHow smart do you want the computers to be? \n")
+    comp = input("How many computers do you want to play against?\n")
+    while True:
+        try:
+            comp = int(comp)
+            break
+        except:
+            print("\nInvalid Input: must be a number\n")
+            comp = input()
+    if comp > 0:
+        dif = input("\nSelect the computer difficulty. (easy/medium/hard) \n")
+        while dif.lower() not in ["easy", "medium", "hard"]:
+            print("\nSelect easy, medium, or hard")
+            dif = input()
+        dif = dif.lower()
 
-    numofPlayer = input("\nHow many human players will there be? (int) (Up to 3 players) \n")
+    numofPlayer = input("\nHow many human players will there be? (Up to 3 players) \n")
+    while True:
+        try:
+            numofPlayer = int(numofPlayer)
+            if numofPlayer in [1, 2, 3]:
+                break
+            else:
+                print("\nInvalid Input: 1 to 3 players required\n")
+                numofPlayer = input()
+        except:
+            print("\nInvalid Input: 1 to 3 players required\n")
+            numofPlayer = input()
 
-
-    while numofPlayer != "1" and numofPlayer != "2" and numofPlayer != "3":
-        print("Please choose 1, 2, or 3 players")
-        numofPlayer = input()
-
-    diffLevel = input("\nType question difficulty level (easy, medium, hard) \n")
+    diffLevel = input("\nType question difficulty level (easy/medium/hard) \n")
+    while diffLevel.lower() not in ["easy", "medium", "hard"]:
+        print("\nSelect easy, medium, or hard")
+        diffLevel = input()
     diffLevel = diffLevel.lower()
 
-    while diffLevel != "easy" and diffLevel != "medium" and diffLevel != "hard":
-        print("Please type easy, medium, or hard")
+    while diffLevel not in ["easy", "medium", "hard"]:
+        print("\nSelect easy, medium, or hard")
         diffLevel = input()
         diffLevel = diffLevel.lower()
 
 
     Players = []
-    for i in range(int(numofPlayer)):
-        name = input('\nPlayer ' + str(i+1) + " Name: ")
+    for i in range(1, int(numofPlayer)+1):
+        name = input('\nPlayer ' + str(i) + " Name: ")
         Players.append(Player(name))
-    
+
     Coms = []
-    for i in range(int(comp)):
+    for i in range(1, comp+1):
         name = "comp" + str(i)
         Coms.append(ComputerPlayer(name,dif))
 
@@ -205,7 +263,7 @@ def main():
     lines.remove(lines[-1])
 
     QA = Questions()
-    
+
     for line in lines:
 
         # Multiple Choice
@@ -232,7 +290,7 @@ def main():
         if line[0] == '$':
             index = line.find('"')
             QA.questions.append(line[index + 1: -1])
-            
+
             TF = []
             ans = ''
 

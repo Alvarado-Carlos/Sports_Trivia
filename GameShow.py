@@ -1,10 +1,20 @@
 # GameShow
-import random, tkinter
+import random, tkinter, tkinter.ttk
 
-'''
+# Putting the code for different widgets here for now
 window = tkinter.Tk()
 window.geometry("600x300")
 window.title("Let's Play Sports Trivia!")
+
+# when quitButton is clicked, the GUI window will close and the application
+# will be aborted
+def closeWindow():
+    window.destroy()
+    exit() # comment this out to use command line
+
+# when button is clicked, the entry in text will replace label
+def clicked():
+    label.configure(text="input: " + text.get())
 
 label = tkinter.Label(window, text="Hello", font=("Times New Roman", 50))
 label.grid(column=1, row=2)
@@ -12,15 +22,20 @@ label.grid(column=1, row=2)
 text = tkinter.Entry(window, width=10)
 text.grid(column=1, row=4)
 
-def clicked():
-    label.configure(text="input: " + text.get())
-
-button = tkinter.Button(window, text="Click Me", bg="grey", fg="black", command=clicked)
+button = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=clicked)
 button.grid(column=1, row=6)
 
-window.mainloop()
-'''
+quitButton = tkinter.Button(window, text="Exit", bg="white", fg="red", command=closeWindow)
+quitButton.grid(column=6, row=0)
 
+combo = tkinter.ttk.Combobox(window)
+combo['values']= ( "Select", 1, 2, 3, 4, 5)
+combo.current(0)
+combo.grid(column=1, row=10)
+
+window.mainloop()
+
+# classes
 class Player:
 
     def __init__(self, name):
@@ -198,7 +213,7 @@ def turn(players,coms,questions):
         print("It's a tie between " + str(second) + " and", str(winner) + "!")
     else:
         print(winner + " Wins!!!")
-
+# Game setup
 def main():
     print("\nWelcome to our trivia game! \n")
     print("We have a few questions before we begin: \n")

@@ -1,40 +1,6 @@
 # GameShow
 import random, tkinter, tkinter.ttk
 
-# Putting the code for different widgets here for now
-window = tkinter.Tk()
-window.geometry("600x300")
-window.title("Let's Play Sports Trivia!")
-
-# when quitButton is clicked, the GUI window will close and the application
-# will be aborted
-def closeWindow():
-    window.destroy()
-    exit() # comment this out to use command line
-
-# when button is clicked, the entry in text will replace label
-def clicked():
-    label.configure(text="input: " + text.get())
-
-label = tkinter.Label(window, text="Hello", font=("Times New Roman", 50))
-label.grid(column=1, row=2)
-
-text = tkinter.Entry(window, width=10)
-text.grid(column=1, row=4)
-
-button = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=clicked)
-button.grid(column=1, row=6)
-
-quitButton = tkinter.Button(window, text="Exit", bg="white", fg="red", command=closeWindow)
-quitButton.grid(column=6, row=0)
-
-combo = tkinter.ttk.Combobox(window)
-combo['values']= ( "Select", 1, 2, 3, 4, 5)
-combo.current(0)
-combo.grid(column=1, row=10)
-
-window.mainloop()
-
 # classes
 class Player:
 
@@ -213,10 +179,89 @@ def turn(players,coms,questions):
         print("It's a tie between " + str(second) + " and", str(winner) + "!")
     else:
         print(winner + " Wins!!!")
+
 # Game setup
 def main():
-    print("\nWelcome to our trivia game! \n")
-    print("We have a few questions before we begin: \n")
+
+    comp = dif = numofPlayer = diffLevel = 0
+
+    # when button is clicked, the entry in text will replace label
+    def onClickText():
+        label.configure(text="input: " + text.get())
+
+    # when button is clicked, the entry in text will replace label
+    def onClickCombo():
+        label.configure(text="input: " + combo.get())
+    '''
+    # Labels and input widgets
+    label = tkinter.Label(window, text="Hello", font=("Times New Roman", 50))
+    label.grid(column=1, row=2)
+
+    text = tkinter.Entry(window, width=10)
+    text.grid(column=1, row=4)
+
+    combo = tkinter.ttk.Combobox(window)
+    combo['values']= ("Select", 1, 2, 3, 4, 5)
+    combo.current(0)
+    combo.grid(column=3, row=4)
+
+    # Buttons
+    textButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickText)
+    textButton.grid(column=1, row=6)
+
+    comboButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickCombo)
+    comboButton.grid(column=3, row=6)
+    '''
+    # Putting the code for different widgets here for now
+    window = tkinter.Tk()
+    window.geometry("800x600")
+
+    window.title("Let's Play Sports Trivia!")
+
+    label1 = tkinter.Label(window, text="\tWelcome to our trivia game!\n\tWe have a few questions before we begin:\n\n", font=("Times New Roman", 20))
+    label1.grid(column=1, row=2)
+
+    # when quitButton is clicked, the GUI window will close and the application will be aborted
+    def closeWindow():
+        window.destroy()
+        exit() # comment this out to use command line
+
+    def onClickSubmit():
+        comp = int(spin1.get())
+        dif = str(combo1.get().lower())
+        numofPlayer = int(spin2.get())
+        diffLevel = str(combo2.get().lower())
+
+    label2 = tkinter.Label(window, text="How many computers do you want to play against?\n", font=("Times New Roman", 20))
+    label2.grid(column=1, row=4)
+    spin1 = tkinter.Spinbox(window, from_=0, to=5, width=10)
+    spin1.grid(column=1,row=5)
+
+    label3 = tkinter.Label(window, text="\nHow smart should the computers be?\n", font=("Times New Roman", 20))
+    label3.grid(column=1, row=6)
+    combo1 = tkinter.ttk.Combobox(window)
+    combo1['values']= ("No Computer", "Easy", "Medium", "Hard")
+    combo1.current(0)
+    combo1.grid(column=1, row=7)
+
+    label4 = tkinter.Label(window, text="\nHow many human players will there be?\n", font=("Times New Roman", 20))
+    label4.grid(column=1, row=8)
+    spin2 = tkinter.Spinbox(window, from_=1, to=3, width=10)
+    spin2.grid(column=1,row=9)
+
+    label5 = tkinter.Label(window, text="\nHow hard should the questions be?\n", font=("Times New Roman", 20))
+    label5.grid(column=1, row=10)
+    combo2 = tkinter.ttk.Combobox(window)
+    combo2['values']= ("Easy", "Medium", "Hard")
+    combo2.current(0)
+    combo2.grid(column=1, row=11)
+
+    quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=closeWindow)
+    quitButton.grid(column=12, row=0)
+
+    submitButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickSubmit)
+    submitButton.grid(column=1, row=15)
+
 
     comp = input("How many computers do you want to play against?\n")
     while True:
@@ -226,6 +271,7 @@ def main():
         except:
             print("\nInvalid Input: must be a number\n")
             comp = input()
+
     if comp > 0:
         dif = input("\nSelect the computer difficulty. (easy/medium/hard) \n")
         while dif.lower() not in ["easy", "medium", "hard"]:
@@ -331,5 +377,5 @@ def main():
     print("\nBegin Game!!\n")
     turn(Players, Coms, QA)
 
-
+    window.mainloop()
 main()

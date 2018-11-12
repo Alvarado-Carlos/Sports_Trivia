@@ -182,9 +182,6 @@ def turn(players,coms,questions):
 
 # Game setup
 def main():
-
-    comp = dif = numofPlayer = diffLevel = 0
-
     # when button is clicked, the entry in text will replace label
     def onClickText():
         label.configure(text="input: " + text.get())
@@ -215,11 +212,11 @@ def main():
     # Putting the code for different widgets here for now
     window = tkinter.Tk()
     window.geometry("800x600")
-
     window.title("Let's Play Sports Trivia!")
 
-    label1 = tkinter.Label(window, text="\tWelcome to our trivia game!\n\tWe have a few questions before we begin:\n\n", font=("Times New Roman", 20))
-    label1.grid(column=1, row=2)
+    # Switch frames
+    def raiseFrame(frame):
+        frame.tkraise()
 
     # when quitButton is clicked, the GUI window will close and the application will be aborted
     def closeWindow():
@@ -227,10 +224,25 @@ def main():
         exit() # comment this out to use command line
 
     def onClickSubmit():
+        global comp
+        global dif
+        global numofPlayer
+        global diffLevel
+
         comp = int(spin1.get())
-        dif = str(combo1.get().lower())
+        dif = combo1.get().lower()
         numofPlayer = int(spin2.get())
-        diffLevel = str(combo2.get().lower())
+        diffLevel = combo2.get().lower()
+
+        triviaWindow = tkinter.Tk()
+        triviaWindow.geometry("800x600")
+        triviaWindow.title("Let's Play Sports Trivia!")
+        window.destroy()
+
+
+
+    label1 = tkinter.Label(window, text="\tWelcome to our trivia game!\n\tWe have a few questions before we begin:\n\n", font=("Times New Roman", 20))
+    label1.grid(column=1, row=2)
 
     label2 = tkinter.Label(window, text="How many computers do you want to play against?\n", font=("Times New Roman", 20))
     label2.grid(column=1, row=4)
@@ -238,31 +250,32 @@ def main():
     spin1.grid(column=1,row=5)
 
     label3 = tkinter.Label(window, text="\nHow smart should the computers be?\n", font=("Times New Roman", 20))
-    label3.grid(column=1, row=6)
+    label3.grid(column=1, row=7)
     combo1 = tkinter.ttk.Combobox(window)
     combo1['values']= ("No Computer", "Easy", "Medium", "Hard")
     combo1.current(0)
-    combo1.grid(column=1, row=7)
+    combo1.grid(column=1, row=8)
 
     label4 = tkinter.Label(window, text="\nHow many human players will there be?\n", font=("Times New Roman", 20))
-    label4.grid(column=1, row=8)
+    label4.grid(column=1, row=10)
     spin2 = tkinter.Spinbox(window, from_=1, to=3, width=10)
-    spin2.grid(column=1,row=9)
+    spin2.grid(column=1,row=11)
 
     label5 = tkinter.Label(window, text="\nHow hard should the questions be?\n", font=("Times New Roman", 20))
-    label5.grid(column=1, row=10)
+    label5.grid(column=1, row=13)
     combo2 = tkinter.ttk.Combobox(window)
     combo2['values']= ("Easy", "Medium", "Hard")
     combo2.current(0)
-    combo2.grid(column=1, row=11)
+    combo2.grid(column=1, row=14)
 
     quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=closeWindow)
     quitButton.grid(column=12, row=0)
 
     submitButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickSubmit)
-    submitButton.grid(column=1, row=15)
+    submitButton.grid(column=1, row=16)
 
-
+    window.mainloop()
+    '''
     comp = input("How many computers do you want to play against?\n")
     while True:
         try:
@@ -302,7 +315,7 @@ def main():
         print("\nSelect easy, medium, or hard")
         diffLevel = input()
         diffLevel = diffLevel.lower()
-
+    '''
 
     Players = []
     for i in range(1, int(numofPlayer)+1):
@@ -315,7 +328,8 @@ def main():
         Coms.append(ComputerPlayer(name,dif))
 
     # Read in Questions and Answers
-    lines = [line.rstrip('\n') for line in open(str(diffLevel + "QA" + ".txt"))]
+    file = str(diffLevel + "QA" + ".txt")
+    lines = [line.rstrip('\n') for line in open(file)]
     lines = [line.lstrip('\t') for line in lines]
 
     for line in lines:
@@ -377,5 +391,6 @@ def main():
     print("\nBegin Game!!\n")
     turn(Players, Coms, QA)
 
-    window.mainloop()
-main()
+
+if __name__ == '__main__':
+    main()

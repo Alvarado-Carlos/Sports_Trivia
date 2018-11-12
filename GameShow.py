@@ -225,7 +225,7 @@ def main():
     '''
     # Putting the code for different widgets here for now
     window = tkinter.Tk()
-    window.geometry("800x600")
+    window.geometry("550x700")
     window.title("Let's Play Sports Trivia!")
 
     # Switch frames
@@ -251,7 +251,7 @@ def main():
         terminateCondition = int(spin3.get())
 
         triviaWindow = tkinter.Tk()
-        triviaWindow.geometry("1050x650")
+        triviaWindow.geometry("900x650")
         triviaWindow.title("Let's Play Sports Trivia!")
         window.destroy()
 
@@ -282,7 +282,7 @@ def main():
     combo2.current(0)
     combo2.grid(column=1, row=14)
 
-    label6 = tkinter.Label(window, text="\nChoose win condition a number of points or infinite? (-1 for infinite) \n")
+    label6 = tkinter.Label(window, text="\nChoose win condition a number of points or infinite?\n(-1 for infinite) \n", font=("Times New Roman", 20))
     label6.grid(column=1, row=15)
     spin3 = tkinter.Spinbox(window, from_=-1, to=1000000, width=10)
     spin3.grid(column=1,row=16)

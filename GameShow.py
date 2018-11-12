@@ -89,7 +89,7 @@ def scoreboard(players, coms):
 
 
 def turn(players,coms,questions, terminateCondition):
-    stop =0
+    stop = 0
     while questions.numofQuestions() > 0:
         for player in players:
 
@@ -110,8 +110,8 @@ def turn(players,coms,questions, terminateCondition):
                     print(answerChoices[i])
                 playerAnswer = input("\nWhat is your answer? \n")
                 playerAnswer = playerAnswer.upper()
-            if (playerAnswer == "STOP") & (terminateCondition == "-1"):
-                stop =1
+            if (playerAnswer == "STOP"):
+                stop = 1
                 break
 
             if playerAnswer == Correctanswer:
@@ -126,7 +126,7 @@ def turn(players,coms,questions, terminateCondition):
 
             if questions.numofQuestions()>0:
                 input('Continue to Next Question? (Enter)\n\n')
-            if int(terminateCondition) == player.getScore():
+            if int(terminateCondition) == player.getScore() and int(terminateCondition) != 0:
                 print(player.name +" reached a score of "+ str(player.getScore()))
                 print(player.name + " Wins!!")
                 return
@@ -154,7 +154,7 @@ def turn(players,coms,questions, terminateCondition):
                 # let all the other players guess the incorrect question to steal points
 
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
-            if int(terminateCondition) == com.getScore():
+            if int(terminateCondition) == com.getScore() and int(terminateCondition) != 0:
                 print(com.name +"reached a score of "+ str(com.getScore()))
                 print(com.name + "Wins!!")
                 return
@@ -276,9 +276,9 @@ def main():
     combo2.current(0)
     combo2.grid(column=1, row=14)
 
-    label6 = tkinter.Label(window, text="\nChoose win condition a number of points or infinite?\n(-1 for infinite) \n", font=("Times New Roman", 20))
+    label6 = tkinter.Label(window, text="\nChoose win condition a number of points or infinite?\n(0 for infinite) \n", font=("Times New Roman", 20))
     label6.grid(column=1, row=15)
-    spin3 = tkinter.Spinbox(window, from_=-1, to=1000000, width=10)
+    spin3 = tkinter.Spinbox(window, from_=0, to=1000000, width=10)
     spin3.grid(column=1,row=16)
 
     quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=lambda:closeWindow(window))
@@ -352,7 +352,7 @@ def main():
     nameWindow.mainloop()
 
     global name
-    names = name.split()
+    names = name.split(', ')
 
     Players = []
     for i in range(0, len(names)):
@@ -430,6 +430,12 @@ def main():
     print("\nBegin Game!!\n")
     turn(Players, Coms, QA, terminateCondition)
 
+    playAgain = input("\nPlay Again? (y/n)\n")
+    playAgain.lower()
+    if playAgain == 'y' or playAgain == 'yes':
+        main()
+    else:
+        exit()
 
 if __name__ == '__main__':
     main()

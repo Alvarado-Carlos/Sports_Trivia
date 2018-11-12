@@ -88,7 +88,8 @@ def scoreboard(players, coms):
         print(com.name +"---->" +str(com.getScore()))
 
 
-def turn(players,coms,questions):
+def turn(players,coms,questions, terminateCondition):
+    stop =0
     while questions.numofQuestions() > 0:
         for player in players:
 
@@ -109,6 +110,9 @@ def turn(players,coms,questions):
                     print(answerChoices[i])
                 playerAnswer = input("\nWhat is your answer? \n")
                 playerAnswer = playerAnswer.upper()
+            if (playerAnswer == "STOP") & (terminateCondition == "-1"):
+                stop =1
+                break
 
             if playerAnswer == Correctanswer:
                 print("\nYou are correct \n")
@@ -122,6 +126,12 @@ def turn(players,coms,questions):
 
             if questions.numofQuestions()>0:
                 input('Continue to Next Question? (Enter)\n\n')
+            if int(terminateCondition) == player.getScore():
+                print(player.name +" reached a score of "+ str(player.getScore()))
+                print(player.name + " Wins!!")
+                return
+        if (stop == 1):
+        	break
 
         #com will simulation
         for com in coms:
@@ -144,6 +154,10 @@ def turn(players,coms,questions):
                 # let all the other players guess the incorrect question to steal points
 
                 questions.delQuestion(question,Correctanswer,answerChoices,idx)
+            if int(terminateCondition) == com.getScore():
+                print(com.name +"reached a score of "+ str(com.getScore()))
+                print(com.name + "Wins!!")
+                return
 
     print("\n\nGAME OVER\n\n")
     scoreboard(players, coms)
@@ -228,18 +242,18 @@ def main():
         global dif
         global numofPlayer
         global diffLevel
+        global terminateCondition
 
         comp = int(spin1.get())
         dif = combo1.get().lower()
         numofPlayer = int(spin2.get())
         diffLevel = combo2.get().lower()
+        terminateCondition = int(spin3.get())
 
         triviaWindow = tkinter.Tk()
-        triviaWindow.geometry("800x600")
+        triviaWindow.geometry("1050x650")
         triviaWindow.title("Let's Play Sports Trivia!")
         window.destroy()
-
-
 
     label1 = tkinter.Label(window, text="\tWelcome to our trivia game!\n\tWe have a few questions before we begin:\n\n", font=("Times New Roman", 20))
     label1.grid(column=1, row=2)
@@ -268,11 +282,16 @@ def main():
     combo2.current(0)
     combo2.grid(column=1, row=14)
 
+    label6 = tkinter.Label(window, text="\nChoose win condition a number of points or infinite? (-1 for infinite) \n")
+    label6.grid(column=1, row=15)
+    spin3 = tkinter.Spinbox(window, from_=-1, to=1000000, width=10)
+    spin3.grid(column=1,row=16)
+
     quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=closeWindow)
     quitButton.grid(column=12, row=0)
 
     submitButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickSubmit)
-    submitButton.grid(column=1, row=16)
+    submitButton.grid(column=1, row=18)
 
     window.mainloop()
     '''
@@ -389,7 +408,7 @@ def main():
     #print(QA.answers)
     input("\nPress Enter to continue to game")
     print("\nBegin Game!!\n")
-    turn(Players, Coms, QA)
+    turn(Players, Coms, QA, terminateCondition)
 
 
 if __name__ == '__main__':

@@ -15,7 +15,7 @@ class Player:
         self.score += points
 
     def __str__(self):
-        return '{s}\'s score is {d}'.format(self.name, self.points)
+        return '{}\'s score is {}'.format(self.name, self.score)
 
 
 class ComputerPlayer:
@@ -196,9 +196,6 @@ def turn(players,coms,questions, terminateCondition):
 
 # Game setup
 def main():
-    # when button is clicked, the entry in text will replace label
-    def onClickText():
-        label.configure(text="input: " + text.get())
 
     # when button is clicked, the entry in text will replace label
     def onClickCombo():
@@ -233,8 +230,8 @@ def main():
         frame.tkraise()
 
     # when quitButton is clicked, the GUI window will close and the application will be aborted
-    def closeWindow():
-        window.destroy()
+    def closeWindow(wndw):
+        wndw.destroy()
         exit() # comment this out to use command line
 
     def onClickSubmit():
@@ -250,9 +247,6 @@ def main():
         diffLevel = combo2.get().lower()
         terminateCondition = int(spin3.get())
 
-        triviaWindow = tkinter.Tk()
-        triviaWindow.geometry("900x650")
-        triviaWindow.title("Let's Play Sports Trivia!")
         window.destroy()
 
     label1 = tkinter.Label(window, text="\tWelcome to our trivia game!\n\tWe have a few questions before we begin:\n\n", font=("Times New Roman", 20))
@@ -287,7 +281,7 @@ def main():
     spin3 = tkinter.Spinbox(window, from_=-1, to=1000000, width=10)
     spin3.grid(column=1,row=16)
 
-    quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=closeWindow)
+    quitButton = tkinter.Button(window, text="Quit", bg="white", fg="red", command=lambda:closeWindow(window))
     quitButton.grid(column=12, row=0)
 
     submitButton = tkinter.Button(window, text="Submit", bg="grey", fg="black", command=onClickSubmit)
@@ -336,16 +330,42 @@ def main():
         diffLevel = diffLevel.lower()
     '''
 
+    nameWindow = tkinter.Tk()
+    nameWindow.geometry("900x650")
+    nameWindow.title("Let's See Who is Playing")
+
+    # when button is clicked, the entry in text will replace label
+    def onClickText():
+        global name
+        name = str(text.get())
+        nameWindow.destroy()
+
+    labelTxt = "Enter Player the " + str(numofPlayer) + "'s names (Ex: user1, user2, user3):"
+    label7 = tkinter.Label(nameWindow, text=str(labelTxt), font=("Times New Roman", 20))
+    label7.grid(column=1, row=0)
+    text = tkinter.Entry(nameWindow, width=10)
+    text.grid(column=1, row=2)
+    textButton = tkinter.Button(nameWindow, text="Submit", bg="grey", fg="black", command=onClickText)
+    textButton.grid(column=1, row=4)
+    quitButton = tkinter.Button(nameWindow, text="Quit", bg="white", fg="red", command=lambda:closeWindow(nameWindow))
+    quitButton.grid(column=12, row=0)
+    nameWindow.mainloop()
+
+    global name
+    names = name.split()
+
     Players = []
-    for i in range(1, int(numofPlayer)+1):
-        name = input('\nPlayer ' + str(i) + " Name: ")
-        Players.append(Player(name))
+    for i in range(0, len(names)):
+        #name = input('\nPlayer ' + str(i) + " Name: ")
+        Players.append(Player(str(names[i])))
 
     Coms = []
     for i in range(1, comp+1):
         name = "comp" + str(i)
         Coms.append(ComputerPlayer(name,dif))
 
+    for i in Players:
+        print (str(i))
     # Read in Questions and Answers
     file = str(diffLevel + "QA" + ".txt")
     lines = [line.rstrip('\n') for line in open(file)]
